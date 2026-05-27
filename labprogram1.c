@@ -1,39 +1,75 @@
-#include<stdio.h>
-#include<stdlib.h>
-int BinarySearch(int arr[], int start_index, int end_index, int key)
-{
-    while(start_index <= end_index)
-    {
-        int mid = start_index +(end_index - start_index)/2;
-        if(arr[mid] == key){
-            return mid;
-        }
-        else if(arr[mid] < key){
-            start_index = mid+1;
-        }
-        else{
-            end_index = mid-1;
-        }
-        }
-    return -1;
-}
-int main()
-{
-    int n,key;
-    printf("Enter the number of elemnts in the array:\n");
-    scanf("%d",&n);
-    int arr[n];
-    printf("Enter the elements in the array:\n");
-    for(int i = 0; i<n;i++){
-        scanf("%d",&arr[i]);
-    }
-    printf("Enter the key that need to be searched:\n");
-    scanf("%d",&key);
-    int result = BinarySearch(arr,0,n-1,key);
-    if(result == -1){
-        printf("Elemnet not found in the array.\n");
-    }
-    else{
-        printf("Element fount at the index %d.\n",result);
-    }
-}
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Program 1</title>
+</head>
+
+<body>
+
+<h1>To Display a Table</h1>
+
+<table border="1">
+
+<caption>Fruit Juice Drink</caption>
+
+<tr>
+<th>Apple</th>
+<th>Orange</th>
+<th>Screwdriver</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+</table>
+
+<h1>To Display an Image</h1>
+
+<img src="apple.jpg" alt="Apple Image"/>
+
+<h1>To Exhibit Hyperlink</h1>
+
+<a href="program.html">Click Here</a>
+
+<h1>Unordered List</h1>
+
+<ul>
+<li>Apple</li>
+<li>Orange</li>
+<li>Banana</li>
+</ul>
+
+<h1>Ordered List</h1>
+
+<ol>
+<li>Benz</li>
+<li>Toyota</li>
+<li>Tata</li>
+</ol>
+
+<h1>Definition List</h1>
+
+<dl>
+<dt>101</dt>
+<dd>Deepika</dd>
+
+<dt>201</dt>
+<dd>Kareena</dd>
+</dl>
+
+</body>
+</html>

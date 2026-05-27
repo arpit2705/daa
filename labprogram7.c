@@ -1,77 +1,111 @@
-#include<stdio.h>
+<?xml version="1.0" encoding="utf-8"?>
 
-int max(int a, int b)
-{
-    if(a > b)
-        return a;
-    else
-        return b;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Paragraph Stacking</title>
+
+<style>
+
+div{
+   position:absolute;
+   width:300px;
+   padding:10px;
 }
 
-int main()
-{
-    int n, i, j, capacity;
-    int weight[20], value[20];
-    int v[50][50];
-    int w;
-
-    printf("Enter the number of items:\n");
-    scanf("%d", &n);
-
-    printf("Enter weight and value of each item:\n");
-
-    for(i = 1; i <= n; i++)
-    {
-        scanf("%d%d", &weight[i], &value[i]);
-    }
-
-    printf("Enter the capacity of knapsack:\n");
-    scanf("%d", &capacity);
-
-    // Build DP table
-    for(i = 0; i <= n; i++)
-    {
-        for(j = 0; j <= capacity; j++)
-        {
-            if(i == 0 || j == 0)
-            {
-                v[i][j] = 0;
-            }
-            else if(j - weight[i] >= 0)
-            {
-                v[i][j] = max(v[i-1][j],
-                              v[i-1][j-weight[i]] + value[i]);
-            }
-            else
-            {
-                v[i][j] = v[i-1][j];
-            }
-
-            printf("%4d", v[i][j]);
-        }
-
-        printf("\n");
-    }
-
-    // Find selected items
-    w = capacity;
-
-    printf("\nItems included are:\n");
-
-    for(i = n; i > 0; i--)
-    {
-        if(v[i][w] == v[i-1][w])
-        {
-            continue;
-        }
-        else
-        {
-            printf("Item %d\n", i);
-            w = w - weight[i];
-        }
-    }
-
-    printf("\nTotal Profit = %d\n", v[n][capacity]);
-
-    return 0;
+.ls1{
+   top:100px;
+   left:100px;
+   background:pink;
+   z-index:1;
 }
+
+.ls2{
+   top:130px;
+   left:130px;
+   background:lightblue;
+   z-index:2;
+}
+
+.ls3{
+   top:160px;
+   left:160px;
+   background:gray;
+   z-index:3;
+}
+
+.ls4{
+   top:190px;
+   left:190px;
+   background:yellow;
+   z-index:4;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var toplayer = "layer4";
+
+function stack(totop)
+{
+   var oldtop =
+   document.getElementById(toplayer).style;
+
+   var newtop =
+   document.getElementById(totop).style;
+
+   oldtop.zIndex = "0";
+
+   newtop.zIndex = "10";
+
+   toplayer = totop;
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Paragraph Stacking</h1>
+
+<div class="ls1"
+id="layer1"
+onmouseover="stack('layer1')">
+
+FIRST PARAGRAPH
+
+</div>
+
+<div class="ls2"
+id="layer2"
+onmouseover="stack('layer2')">
+
+SECOND PARAGRAPH
+
+</div>
+
+<div class="ls3"
+id="layer3"
+onmouseover="stack('layer3')">
+
+THIRD PARAGRAPH
+
+</div>
+
+<div class="ls4"
+id="layer4"
+onmouseover="stack('layer4')">
+
+FOURTH PARAGRAPH
+
+</div>
+
+</body>
+
+</html>

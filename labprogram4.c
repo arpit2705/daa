@@ -1,92 +1,41 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
+<?xml version="1.0" encoding="utf-8"?>
 
-#define MAXSIZE 30000
-#define NTIMES 5000
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-int partition(int a[], int low, int high)
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Squares and Cubes</title>
+
+<script type="text/javascript">
+
+document.write("<center>");
+document.write("<table border='1'>");
+
+document.write(
+"<tr><th>Number</th><th>Square</th><th>Cube</th></tr>"
+);
+
+for(var n=0; n<=10; n++)
 {
-    int p, i, j, temp;
-
-    p = a[low];
-    i = low + 1;
-    j = high;
-
-    while(1)
-    {
-        while((a[i] <= p) && (i < high))
-            i++;
-
-        while((a[j] > p) && (j >= low))
-            j--;
-
-        if(i < j)
-        {
-            temp = a[i];
-            a[i] = a[j];
-            a[j] = temp;
-        }
-        else
-        {
-            temp = a[low];
-            a[low] = a[j];
-            a[j] = temp;
-
-            return j;
-        }
-    }
+   document.write(
+   "<tr><td>" + n +
+   "</td><td>" + n*n +
+   "</td><td>" + n*n*n +
+   "</td></tr>"
+   );
 }
 
-void quicksort(int a[], int low, int high)
-{
-    int s;
+document.write("</table>");
+document.write("</center>");
 
-    if(low < high)
-    {
-        s = partition(a, low, high);
+</script>
 
-        quicksort(a, low, s - 1);
+</head>
 
-        quicksort(a, s + 1, high);
-    }
-}
+<body>
+</body>
 
-void main()
-{
-    int a[MAXSIZE], i, n, k;
-    clock_t start, end;
-    double runtime = 0;
-
-    printf("Enter the size of array:\n");
-    scanf("%d", &n);
-
-    for(k = 0; k < NTIMES; k++)
-    {
-        srand(1);
-
-        for(i = 0; i < n; i++)
-        {
-            a[i] = rand();
-        }
-
-        start = clock();
-
-        quicksort(a, 0, n - 1);
-
-        end = clock();
-
-        runtime = runtime + ((double)(end - start) / CLOCKS_PER_SEC);
-    }
-
-    runtime = runtime / NTIMES;
-
-    printf("\nSorted elements are:\n");
-
-    for(i = 0; i < n; i++)
-    {
-        printf("%d\n", a[i]);
-    }
-
-    printf("Time taken for sorting is %lf seconds\n", runtime);
-}
+</html>

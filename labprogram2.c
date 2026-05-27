@@ -1,44 +1,63 @@
-#include<stdio.h>
-#include<stdlib.h>
-int i,j,n;
-int f=0,r=0;
-int a[10][10],q[10],visited[10];
-void bfs(int u)
-{
-    int v;
-    visited[u] = 1;
-    q[r] =u;
-    while(f<=r){
-        u = q[f++];
-        for(v=1;v<=n;v++){
-            if(a[u][v]==1 && visited[v]==0){
-                visited[v] = 1;
-                q[++r] =v;
-            }
-        }
-    }
-}
-    void main(){
-        int source;
-        printf("Enter the number of vertices:\n");
-        scanf("%d",&n);
-        printf("Enter the adjacency matrix:\n");
-        for(int i =1;i<=n;i++){
-            for(int j=1;j<=n;j++){
-                scanf("%d",&a[i][j]);
-            }
-        }
-        printf("Enter the source vertex:\n");
-        scanf("%d",&source);
-        for(int i=1;i<=n;i++){
-            visited[i] = 0;
-        }
-        bfs(source);
-        printf("Reachable vertices are:\n");
-        for(int i =1;i<=n;i++){
-            if(visited[i]==1){
-                printf("%d is visited\n",i);
-            }
-        }
-    }
+<?xml version="1.0" encoding="utf-8"?>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Program 2</title>
+
+<script type="text/javascript">
+
+function validator()
+{
+   var usn = document.getElementById("req1");
+
+   if(iscorrect(usn))
+      return true;
+
+   return false;
+}
+
+function iscorrect(elem1)
+{
+   var usnexp =
+   /[1-4][A-Z][A-Z][0-9][0-9][A-Z][A-Z][0-9][0-9][0-9]$/;
+
+   if(elem1.value.length == 0)
+   {
+      alert("USN is empty");
+      elem1.focus();
+      return false;
+   }
+
+   else if(!elem1.value.match(usnexp))
+   {
+      alert("Invalid USN Format");
+      elem1.focus();
+      return false;
+   }
+
+   alert("USN is Correct");
+   return true;
+}
+
+</script>
+
+</head>
+
+<body>
+
+<form onsubmit="return validator()">
+
+Enter USN:
+<input type="text" id="req1"/>
+
+<input type="submit" value="Check Field"/>
+
+</form>
+
+</body>
+</html>

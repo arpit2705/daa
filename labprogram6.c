@@ -1,89 +1,51 @@
-#include<stdio.h>
+<?xml version="1.0" encoding="utf-8"?>
 
-void swap(int *a, int *b)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Visibility Control</title>
+
+<script src="showhide.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<form action="">
+
+<div id="apple" style="visibility:visible;">
+
+<img src="apple.jpg" alt="Apple Image"/>
+
+</div>
+
+<p>
+
+<input type="button"
+value="Toggle Image"
+onclick="flipimage()" />
+
+</p>
+
+</form>
+
+</body>
+
+</html>
+
+
+function flipimage()
 {
-    int temp;
+   var dom =
+   document.getElementById("apple").style;
 
-    temp = *a;
-    *a = *b;
-    *b = temp;
-}
+   if(dom.visibility == "visible")
+      dom.visibility = "hidden";
 
-void heapify(int arr[], int n, int i)
-{
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-
-    if(left < n && arr[left] > arr[largest])
-    {
-        largest = left;
-    }
-
-    if(right < n && arr[right] > arr[largest])
-    {
-        largest = right;
-    }
-
-    if(largest != i)
-    {
-        swap(&arr[i], &arr[largest]);
-
-        heapify(arr, n, largest);
-    }
-}
-
-void heapSort(int arr[], int n)
-{
-    int i;
-
-    /* Build Max Heap */
-
-    for(i = n/2 - 1; i >= 0; i--)
-    {
-        heapify(arr, n, i);
-    }
-
-    /* Extract elements one by one */
-
-    for(i = n - 1; i >= 0; i--)
-    {
-        swap(&arr[0], &arr[i]);
-
-        heapify(arr, i, 0);
-    }
-}
-
-void printArray(int arr[], int n)
-{
-    int i;
-
-    for(i = 0; i < n; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-
-    printf("\n");
-}
-
-void main()
-{
-    int arr[1000];
-    int n, i;
-
-    printf("Enter the number of elements:\n");
-    scanf("%d", &n);
-
-    printf("Enter the elements:\n");
-
-    for(i = 0; i < n; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
-
-    heapSort(arr, n);
-
-    printf("Sorted array is:\n");
-
-    printArray(arr, n);
+   else
+      dom.visibility = "visible";
 }

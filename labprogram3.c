@@ -1,69 +1,105 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#define MAXSIZE 30000
-#define NTIMES 5000
-void merge(int a[],int low,int mid,int high)
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Calculator</title>
+
+<script src="calculator.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<h1>Simple Calculator</h1>
+
+<table border="1" cellpadding="5">
+
+<tr>
+<td>First Number</td>
+<td>Second Number</td>
+<td>Result</td>
+</tr>
+
+<tr>
+
+<td>
+<input type="text" id="num1"/>
+</td>
+
+<td>
+<input type="text" id="num2"/>
+</td>
+
+<td>
+<input type="text" id="result"/>
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="3">
+
+<button onclick="showresult('1')">+</button>
+
+<button onclick="showresult('2')">-</button>
+
+<button onclick="showresult('3')">*</button>
+
+<button onclick="showresult('4')">/</button>
+
+<button onclick="cls()">CLEAR</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+</html>
+
+
+function cls()
 {
-    int i,j,k;
-    int b[MAXSIZE];
-    i =low;
-    j = mid+1;
-    k = low;
-    while(i<=mid && j<=high){
-        if(a[i]<a[j]){
-            b[k] = a[i];
-            i++;
-        } else{
-            b[k] = a[j];
-            j++;
-        }
-        k++;
-    }
-    while(i<=mid){
-        b[k] = a[i];
-        i++;
-        k++;
-    }
-    while(j<=high){
-        b[k] = a[j];
-        j++;
-        k++;
-    }
-    for(i = low;i<=high;i++){
-        a[i] = b[i];
-    }
+   document.getElementById("num1").value = "";
+   document.getElementById("num2").value = "";
+   document.getElementById("result").value = "";
 }
-void mergesort(int a[],int low,int high)
+
+function showresult(choice)
 {
-    int mid;
-    if(low<high){
-        mid = low+(high-low)/2;
-        mergesort(a,low,mid);
-        mergesort(a,mid+1,high);
-        merge(a,low,mid,high);
-    }
-}
-int main(){
-    int a[MAXSIZE],i,n,k;
-    clock_t start,end;
-    double runtime =0;
-    printf("Enter the number of elements in the array:\n");
-    scanf("%d",&n);
-    for(k=1;k<=NTIMES;k++){
-       srand(1);
-       for(i=1;i<=n;i++){
-        a[i] = rand();
-       }
-       start = clock();
-       mergesort(a,1,n);
-       end = clock();
-       runtime = runtime+(double)(end-start)/CLOCKS_PER_SEC;
-    }
-    runtime = runtime /NTIMES;
-    printf("\nSorted elements are:\n");
-    for(i=1;i<=n;i++){
-        printf("%d\n",a[i]);
-    }
-    printf("Avergae time taken to sort %d elememts is %lf seconds.\n",n,runtime);
+   var n1 =
+   parseFloat(document.getElementById("num1").value);
+
+   var n2 =
+   parseFloat(document.getElementById("num2").value);
+
+   var r;
+
+   switch(choice)
+   {
+      case '1':
+         r = n1 + n2;
+         break;
+
+      case '2':
+         r = n1 - n2;
+         break;
+
+      case '3':
+         r = n1 * n2;
+         break;
+
+      case '4':
+         r = n1 / n2;
+         break;
+   }
+
+   document.getElementById("result").value = r;
 }

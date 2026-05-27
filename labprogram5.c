@@ -1,55 +1,68 @@
-#include<stdio.h>
+<?xml version="1.0" encoding="utf-8"?>
 
-int min(int a, int b)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Grow and Shrink Text</title>
+
+<script type="text/javascript">
+
+var c = 5;
+var t1;
+
+function start()
 {
-    return (a < b) ? a : b;
+   t1 = setInterval(incr,100);
 }
 
-void floyds(int cost[10][10], int n)
+function incr()
 {
-    int i, j, k;
+   c++;
 
-    for(k = 1; k <= n; k++)
-    {
-        for(i = 1; i <= n; i++)
-        {
-            for(j = 1; j <= n; j++)
-            {
-                cost[i][j] = min(cost[i][j],
-                                 cost[i][k] + cost[k][j]);
-            }
-        }
-    }
+   t.innerHTML = "TEXT-GROWING : " + c + "pt";
+
+   t.style.fontSize = c + "pt";
+
+   t.style.color = "red";
+
+   if(c > 50)
+   {
+      clearInterval(t1);
+
+      t1 = setInterval(decr,100);
+   }
 }
 
-int main()
+function decr()
 {
-    int n, cost[10][10], i, j;
+   c--;
 
-    printf("Enter the number of vertices:\n");
-    scanf("%d", &n);
+   t.innerHTML = "TEXT-SHRINKING : " + c + "pt";
 
-    printf("Enter the cost matrix:\n");
+   t.style.fontSize = c + "pt";
 
-    for(i = 1; i <= n; i++)
-    {
-        for(j = 1; j <= n; j++)
-        {
-            scanf("%d", &cost[i][j]);
-        }
-    }
+   t.style.color = "blue";
 
-    floyds(cost, n);
-
-    printf("All pairs shortest path matrix is:\n");
-
-    for(i = 1; i <= n; i++)
-    {
-        for(j = 1; j <= n; j++)
-        {
-            printf("%d\t", cost[i][j]);
-        }
-
-        printf("\n");
-    }
+   if(c == 5)
+   {
+      clearInterval(t1);
+   }
 }
+
+</script>
+
+</head>
+
+<body onload="start()">
+
+<center>
+<p id="t"></p>
+</center>
+
+</body>
+
+</html>
